@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>WhatsApp Home Page</title>
+    <link rel="stylesheet" href="whatsappHome.css">
+    <link rel="shortcut icon" href="#">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h2>WhatsApp</h2>
+    </header>
+
+    <div class="main-container">
+        <div class="group-list">
+            <h3>Group Chats</h3>
+            <div class="groupListDiv">
+                <button id="loadPopupbutton" type="button">Create New
+                    Group</button>
+                <ol id="groupList"></ol>
+            </div>
+
+            <div class="singleUserDiv">
+                <button id="loadSingleUserPopupbutton" type="button">Start or Search A New Chat</button>
+                <ol id="singleUserList"></ol>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatArea">
+            <h3>Select a group to view chat</h3>
+
+            <div class="button-container">
+                <button id="removeContactBtn">Remove Contact</button>
+                <button id="addContactBtn">Add Contact</button>
+                <button id="addAdminBtn">Make Admin</button>
+                <button id="deleteGroup">Delete Group</button>
+            </div>
+            <div id="chatContent"></div>
+
+            <div class="chatDiv">
+                <form id="chatForm">
+                    <lable>Enter Chat</lable>
+                    <input type="text" id="userChat" placeholder="Enter Text">
+                    <button type="submit">Send Chat</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div id="groupPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeGroupPopup">&times;</span>
+            <h3>Create New Group</h3>
+            <form id="groupForm">
+                <label for="groupName">Group Name:</label><br>
+                <input type="text" id="groupName" name="groupName" placeholder="Enter Group Name"><br><br>
+                <label>Choose contacts for Group:</label><br>
+                <div id="contactList" class="scrollable-container"></div>
+                <button type="button" id="createGroup">Create Group</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="singleUserPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeSingleUserPopup">&times;</span>
+            <h3>New Chat</h3>
+            <form id="singleUserForm">
+                <label>Seacrh contacts</label><br>
+                <input type="text" id="searchInputSingleUser" placeholder="Enter User Name or Number">
+                <div id="singleUserContactList" class="scrollable-container"></div>
+                <button type="button" id="createSingleUserGroup">Create Chat</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="removeContactPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeRemoveContactPopup">&times;</span>
+            <h3>Remove Contacts from Group</h3>
+            <form id="removeContactForm">
+                <label>Select contacts to remove:</label><br>
+                <div id="removeContactList" class="scrollable-container"></div>
+                <button type="button" id="removeSelectedContacts">Remove Selected</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addContactPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeAddContactPopup">&times;</span>
+            <h3>Add Contacts to Group</h3>
+            <form id="addContactForm">
+                <input type="text" id="searchInputAddContact" placeholder="Enter User Name or Number">
+                <div id="addContactList" class="scrollable-container"></div>
+                <button type="button" id="addSelectedContacts">Add Selected Contact</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addAdminPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeaddAdminPopup">&times;</span>
+            <h3>Promote To Admin</h3>
+            <form id="addAdminForm">
+                <label>Select contacts to promote As admin:</label><br>
+                <div id="addAdminList" class="scrollable-container"></div>
+                <button type="button" id="promoteToAdmin">Promote Selected Contact</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="whatsappHome.js"> </script>
+</body>
+
+</html>

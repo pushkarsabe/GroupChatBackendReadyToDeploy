@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 //to secure requests 
 const helmet = require('helmet');
 //compression generally refers to the process of compressing data or files
@@ -39,6 +40,21 @@ app.use('/groups', groupRoute);
 
 //admin
 app.use('/admin', adminRoute);
+
+// This allows external resources (like Axios from cdn.jsdelivr.net) to be used without being blocked.
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'");
+    next();
+});
+
+// Serve static files from the public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res) => {
+    console.log("url... = " + req.url);
+    // res.sendFile(path.join(__dirname, `public/login.html`));
+    res.sendFile(path.join(__dirname, `public/${req.url}`));
+});
 
 // User and Chat relationship
 User.hasMany(Chat, { foreignKey: 'signupId' });
